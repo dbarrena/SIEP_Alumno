@@ -24,4 +24,13 @@
         <item name="android:textColorPrimary">@color/colorPrimary</item>
     </style>
 
+    <style name="Widget.BottomNavigationView"
+        parent="Widget.Design.BottomNavigationView">
+        <item name="fontFamily">@font/gotham_rounded_medium</item>
+    </style>
+
+    <style name="GothamTextViewStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/gotham_rounded_medium</item>
+    </style>
+
 </resources>

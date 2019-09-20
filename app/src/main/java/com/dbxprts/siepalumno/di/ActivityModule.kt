@@ -7,6 +7,10 @@ import dagger.android.ContributesAndroidInjector
 @Suppress("unused")
 @Module
 abstract class ActivityModule {
-    @ContributesAndroidInjector
-    internal abstract fun contributeMainACtivity(): MainActivity
+    @ContributesAndroidInjector(
+        modules = [
+            MainFragmentModule::class
+        ]
+    )
+    internal abstract fun contributeMainActivity(): MainActivity
 }

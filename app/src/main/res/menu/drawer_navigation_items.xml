@@ -2,9 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:icon="@drawable/ic_home"
-        android:title="Inicio" />
+        android:icon="@drawable/ic_grades"
+        android:title="Calificaciones" />
+    <item
+        android:icon="@drawable/ic_attendance"
+        android:title="Asistencia" />
+    <item
+        android:icon="@drawable/ic_fees"
+        android:title="Colegiaturas" />
+    <item
+        android:icon="@drawable/ic_profile"
+        android:title="Perfil" />
     <item
         android:icon="@drawable/ic_info"
         android:title="Acerca de la escuela" />
+    <item
+        android:icon="@drawable/ic_contact"
+        android:title="Contacto" />
 </menu>

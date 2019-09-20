@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.transition.Slide
 import android.transition.Transition
 import android.view.Gravity
+import android.view.animation.DecelerateInterpolator
 import androidx.appcompat.app.AppCompatActivity
 import com.dbxprts.siepalumno.R
 import com.dbxprts.siepalumno.views.main.MainActivity
@@ -28,6 +29,8 @@ class LoginActivity : AppCompatActivity() {
             val options = ActivityOptions.makeSceneTransitionAnimation(this)
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent, options.toBundle())
+//            startActivity(intent)
+
         }
 
         password.setOnEditorActionListener { textView, i, keyEvent ->
