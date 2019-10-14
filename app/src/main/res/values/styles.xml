@@ -26,11 +26,11 @@
 
     <style name="Widget.BottomNavigationView"
         parent="Widget.Design.BottomNavigationView">
-        <item name="fontFamily">@font/gotham_rounded_medium</item>
+        <item name="fontFamily">@font/gotham_rounded_book</item>
     </style>
 
     <style name="GothamTextViewStyle" parent="android:Widget.TextView">
-        <item name="android:fontFamily">@font/gotham_rounded_medium</item>
+        <item name="android:fontFamily">@font/gotham_rounded_book</item>
     </style>
 
 </resources>

@@ -12,10 +12,12 @@ import com.dbxprts.siepalumno.views.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import androidx.fragment.app.Fragment
 import com.dbxprts.siepalumno.views.main.home.HomeFragment
+import com.google.firebase.messaging.FirebaseMessaging
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
+import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -40,6 +42,10 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
         toggle.drawerArrowDrawable.color = resources.getColor(R.color.white)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
+
+        FirebaseMessaging.getInstance().subscribeToTopic("family_channel").addOnSuccessListener {
+            Timber.d("subscribed to Hello topic")
+        }
 
 //        setupNavigation()
     }

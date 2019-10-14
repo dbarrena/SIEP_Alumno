@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/gotham_rounded_medium"
+        android:fontFamily="@font/gotham_rounded_book"
         android:textColor="@color/colorPrimaryText"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"

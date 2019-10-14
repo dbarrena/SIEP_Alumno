@@ -12,6 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+
+        <service android:name=".services.FCMMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
         <activity android:name=".views.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

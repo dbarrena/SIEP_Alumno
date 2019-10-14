@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "101194099983",
+    "firebase_url": "https://siep-d3e72.firebaseio.com",
+    "project_id": "siep-d3e72",
+    "storage_bucket": "siep-d3e72.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:101194099983:android:78231e92db5906d8e8a27a",
+        "android_client_info": {
+          "package_name": "com.dbxprts.siepalumno"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "101194099983-i813g18qp264l82tl2oq8baovaj82fsp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dbxprts.siepalumno",
+            "certificate_hash": "7d03023fc27d2babb3a8847931ae29a81b9babb2"
+          }
+        },
+        {
+          "client_id": "101194099983-ckmbv61bfikohuho479ea3qev9mdjo5r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-HZasBjCthQcOFnkmKF1rEXi3HXQXACo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "101194099983-ckmbv61bfikohuho479ea3qev9mdjo5r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
