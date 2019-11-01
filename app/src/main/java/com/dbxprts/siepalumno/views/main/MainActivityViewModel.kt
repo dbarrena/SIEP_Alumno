@@ -1,30 +1,32 @@
-package com.dbxprts.siepalumno.views.login
+package com.dbxprts.siepalumno.views.main
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.dbxprts.siepalumno.api.LoginService
-import com.dbxprts.siepalumno.model.Family
+import com.dbxprts.siepalumno.api.StudentService
+import com.dbxprts.siepalumno.model.Student
 import com.dbxprts.siepalumno.views.base.BaseViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import javax.inject.Inject
 
-class LoginActivityViewModel @Inject
+class MainActivityViewModel @Inject
 constructor(
-    private val loginService: LoginService
+    private val studentService: StudentService
 ) : BaseViewModel() {
-    val family: MutableLiveData<Family> by lazy {
-        MutableLiveData<Family>().apply { setValue(null) }
+    val students: MutableLiveData<ArrayList<Student?>> by lazy {
+        MutableLiveData<ArrayList<Student?>>().apply { setValue(null) }
     }
 
-    fun findUser(email: String) {
-        loginService.findFamily(email)
-            .enqueue(object : Callback<Family?> {
-                override fun onResponse(call: Call<Family?>, response: Response<Family?>) {
+    fun getStudentsFromStudent(familyID: Long) {
+        studentService.findStudentsByFamily(familyID)
+            .enqueue(object : Callback<ArrayList<Student?>> {
+                override fun onResponse(
+                    call: Call<ArrayList<Student?>>,
+                    response: Response<ArrayList<Student?>>
+                ) {
                     if (response.code() == 200) {
                         response.body()?.let {
-                            family.postValue(it)
+                            students.postValue(it)
                         } ?: run {
                             messages.postValue(
                                 "Usuario no encontrado en la base de datos, " +
@@ -36,7 +38,7 @@ constructor(
                     }
                 }
 
-                override fun onFailure(call: Call<Family?>, t: Throwable) {
+                override fun onFailure(call: Call<ArrayList<Student?>>, t: Throwable) {
                     messages.postValue("Error ${t.localizedMessage}")
                 }
 

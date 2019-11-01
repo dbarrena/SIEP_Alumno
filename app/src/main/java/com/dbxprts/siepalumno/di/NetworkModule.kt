@@ -1,5 +1,9 @@
 package com.dbxprts.siepalumno.di
 
+import androidx.annotation.NonNull
+import com.dbxprts.siepalumno.api.HomeworkService
+import com.dbxprts.siepalumno.api.LoginService
+import com.dbxprts.siepalumno.api.StudentService
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -24,8 +28,26 @@ class NetworkModule {
 
         return Retrofit.Builder()
             .client(client)
-            .baseUrl("")
+            .baseUrl("http://34.66.117.165:8888/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideLoginService(@NonNull retrofit: Retrofit): LoginService {
+        return retrofit.create(LoginService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideStudentService(@NonNull retrofit: Retrofit): StudentService{
+        return retrofit.create(StudentService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideHomeworkService(@NonNull retrofit: Retrofit): HomeworkService{
+        return retrofit.create(HomeworkService::class.java)
     }
 }

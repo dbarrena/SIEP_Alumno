@@ -11,8 +11,13 @@ import com.dbxprts.siepalumno.R
 import com.dbxprts.siepalumno.views.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import com.dbxprts.siepalumno.utils.PrefsKeys
+import com.dbxprts.siepalumno.views.base.BaseActivity
 import com.dbxprts.siepalumno.views.main.home.HomeFragment
 import com.google.firebase.messaging.FirebaseMessaging
+import com.jakewharton.threetenabp.AndroidThreeTen
+import com.pixplicity.easyprefs.library.Prefs
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -21,17 +26,20 @@ import timber.log.Timber
 import javax.inject.Inject
 
 
-class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
+class MainActivity : BaseActivity<MainActivityViewModel>(MainActivityViewModel::class),
+    HasSupportFragmentInjector {
     @Inject
     lateinit var fragmentInjector: DispatchingAndroidInjector<Fragment>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
+        AndroidThreeTen.init(this)
         setAnimation()
         setContentView(R.layout.activity_main)
 
         init()
+        observe()
     }
 
     private fun init() {
@@ -47,7 +55,30 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
             Timber.d("subscribed to Hello topic")
         }
 
-//        setupNavigation()
+        setupNavigation()
+
+    }
+
+    private fun observe() {
+        getStudents()
+
+        viewModel.students.observe(this,
+            Observer {
+                it?.let { students ->
+
+                }
+            })
+    }
+
+    @Throws(Exception::class)
+    private fun getStudents() {
+        val familyID = Prefs.getLong(PrefsKeys.familyID, 0)
+
+        if (familyID != 0L) {
+            viewModel.getStudentsFromStudent(familyID)
+        } else {
+            throw Exception("Family ID doesn't exists.")
+        }
     }
 
     private fun setupNavigation() {
@@ -64,6 +95,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
             }
         }
     }
+
 
     private fun loadFragment(fragment: Fragment) {
         // load fragment

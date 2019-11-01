@@ -6,21 +6,18 @@ import android.os.Bundle
 import android.transition.Slide
 import android.transition.Transition
 import android.view.Gravity
-import android.view.View
-import android.view.animation.DecelerateInterpolator
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.dbxprts.siepalumno.R
 import com.dbxprts.siepalumno.extension.snack
+import com.dbxprts.siepalumno.utils.PrefsKeys
 import com.dbxprts.siepalumno.views.base.BaseActivity
 import com.dbxprts.siepalumno.views.main.MainActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
+import com.pixplicity.easyprefs.library.Prefs
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_login.content
-import kotlinx.android.synthetic.main.activity_main.*
 
 class LoginActivity : BaseActivity<LoginActivityViewModel>(LoginActivityViewModel::class) {
 
@@ -53,20 +50,27 @@ class LoginActivity : BaseActivity<LoginActivityViewModel>(LoginActivityViewMode
     }
 
     private fun observe() {
-        viewModel.userAuthenticated.observe(this,
+        viewModel.family.observe(this,
             Observer {
                 it?.let {
-                    if (it) {
-                        val options = ActivityOptions.makeSceneTransitionAnimation(this)
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent, options.toBundle())
+                    it.familyID?.let { id ->
+                        Prefs.putLong(PrefsKeys.familyID, id)
                     }
+
+                    it.schoolID?.let { id ->
+                        Prefs.putLong(PrefsKeys.familyID, id)
+                    }
+
+                    val options = ActivityOptions.makeSceneTransitionAnimation(this)
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent, options.toBundle())
                 }
             })
 
         viewModel.messages.observe(this,
             Observer {
                 it?.let {
+                    loginBtn.revertAnimation()
                     content.snack(it, Snackbar.LENGTH_SHORT)
                 }
             }
@@ -78,7 +82,7 @@ class LoginActivity : BaseActivity<LoginActivityViewModel>(LoginActivityViewMode
             mAuth?.signInWithEmailAndPassword(email.text.toString(), password.text.toString())
                 ?.addOnCompleteListener {
                     if (it.isSuccessful) {
-//                    viewModel.getShopperProperties()
+                        viewModel.findUser(email.text.toString())
                     } else {
                         loginBtn.revertAnimation()
                         content.snack(

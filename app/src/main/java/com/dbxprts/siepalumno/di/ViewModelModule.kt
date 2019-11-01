@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.dbxprts.siepalumno.factory.AppViewModelFactory
 import com.dbxprts.siepalumno.views.login.LoginActivityViewModel
+import com.dbxprts.siepalumno.views.main.MainActivityViewModel
 import com.dbxprts.siepalumno.views.main.home.HomeFragmentViewModel
 import dagger.Binds
 import dagger.Module
@@ -21,6 +22,11 @@ internal abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(LoginActivityViewModel::class)
     internal abstract fun bindLoginActivityViewModel(viewModel: LoginActivityViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MainActivityViewModel::class)
+    internal abstract fun bindMainActivityViewModel(viewModel: MainActivityViewModel): ViewModel
 
     @Binds
     internal abstract fun bindViewModelFactory(factory: AppViewModelFactory): ViewModelProvider.Factory

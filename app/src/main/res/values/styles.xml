@@ -7,6 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorControlNormal">@color/white</item>
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
 
         <!--        <item name="android:windowEnterTransition">@transition/transition_fade</item>-->
 <!--        <item name="android:windowExitTransition">@transition/transition_fade</item>-->
@@ -22,6 +23,7 @@
         <item name="android:fontFamily">@font/montserrat</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColorPrimary">@color/colorPrimary</item>
+        <item name="android:textColorSecondary">@color/white</item>
     </style>
 
     <style name="Widget.BottomNavigationView"
@@ -31,6 +33,11 @@
 
     <style name="GothamTextViewStyle" parent="android:Widget.TextView">
         <item name="android:fontFamily">@font/gotham_rounded_book</item>
+    </style>
+
+    <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">@android:color/white</item>
     </style>
 
 </resources>
