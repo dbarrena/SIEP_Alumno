@@ -28,7 +28,7 @@ class NetworkModule {
 
         return Retrofit.Builder()
             .client(client)
-            .baseUrl("http://34.66.117.165:8888/")
+            .baseUrl("")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
